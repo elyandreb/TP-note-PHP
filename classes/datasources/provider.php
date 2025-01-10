@@ -2,7 +2,7 @@
 
 function getQuestions()
 {
-    $source = 'data/model.json';
+    $source = 'data/questions.json';
     $content = file_get_contents($source);
     $products = json_decode($content, true);
 
