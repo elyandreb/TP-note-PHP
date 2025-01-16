@@ -38,5 +38,13 @@ function give_user_score($username, $db) {
     return $rows;
 }
 
+function add_score($username, $score, $question, $db) {
+    $sql = "INSERT INTO SCORE (Username, Score, Question) 
+            VALUES (?, ?, ?)";
+    
+    $stmt = $db->prepare($sql);
+    $stmt->execute([$username, $score, $question]);
+}
+
 $db = init_bd();
 ?>
