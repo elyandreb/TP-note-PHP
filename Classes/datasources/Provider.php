@@ -1,14 +1,17 @@
 <?php
+namespace Question;
+
+use \Exception;
 
 function getQuestions()
 {
     $source = 'data/questions.json';
     $content = file_get_contents($source);
-    $products = json_decode($content, true);
+    $questions = json_decode($content, true);
 
-    if (empty($products)) {
+    if (empty($questions)) {
         throw new Exception('No questions :(', 1);
     }
 
-    return $products;
+    return $questions;
 }
