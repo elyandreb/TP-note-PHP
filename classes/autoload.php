@@ -9,8 +9,4 @@ spl_autoload_register(static function(string $fqcn) {
    // puis chargeons le fichier
    require_once "Classes/$path.php";
 });
-
-use Model\Forum\Message; // Définit dans Classes/Model/Forum/Message.php
-
-$forumMessage = new Message;
 ?>
