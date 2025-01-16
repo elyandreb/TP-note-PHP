@@ -29,7 +29,9 @@ function recreate_db() {
 }
 
 function give_user_score($username, $db) {
-    $sql = "SELECT * FROM SCORE WHERE Username = ?";
+    $sql = "SELECT * FROM SCORE 
+    WHERE Username = ? 
+    ORDER BY Created_at DESC";
     $stmt = $db->prepare($sql);
     $stmt->execute([$username]);
     $rows = $stmt->fetchAll();
