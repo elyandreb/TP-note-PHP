@@ -10,7 +10,7 @@ use Question\Provider;
 session_start();
 
 try {
-    $questions = Provider::loadQuestions(__DIR__ . '/data/questions.json');
+    $questions = Provider::getQuestions();
     $controller = new Controller($questions);
 
     $action = $_GET['action'] ?? 'showQuiz';
