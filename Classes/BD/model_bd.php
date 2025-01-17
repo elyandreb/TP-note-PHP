@@ -4,7 +4,7 @@ namespace BD;
 
 use \PDO;
 
-class model_BD {
+class model_bd {
     private $pdo;
 
     public function __construct() {
