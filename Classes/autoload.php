@@ -7,6 +7,6 @@ spl_autoload_register(static function(string $fqcn) {
    $path = str_replace('\\', '/', $fqcn).'.php';
 
    // puis chargeons le fichier
-   require_once "Classes/$path.php";
+   require_once "Classes/$path";
 });
 ?>
