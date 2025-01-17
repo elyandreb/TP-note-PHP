@@ -1,9 +1,6 @@
 <?php
 
-require_once __DIR__ . '/classes/autoload.php';
-
-use Question\Controller;
-use Question\Provider;
+require_once __DIR__ . '/Classes/autoload.php';
 
 
 
