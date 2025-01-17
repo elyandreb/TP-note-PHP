@@ -25,7 +25,7 @@ class model_BD {
         return $this->pdo;
     }
 
-    function recreate_db():void {
+    public function recreate_db():void {
         include 'auth.php';
         $pdo = new PDO('sqlite:db.sqlite');
         // Permet de gérer le niveau des erreurs
@@ -40,7 +40,7 @@ class model_BD {
         $createTable = $pdo->exec("CREATE TABLE IF NOT EXISTS $table ($columns)");
     }
 
-    function give_user_score($username): array {
+    public function give_user_score($username): array {
         $sql = "SELECT * FROM SCORE 
         WHERE Username = ? 
         ORDER BY Created_at DESC";
@@ -50,7 +50,7 @@ class model_BD {
         return $rows;
 }
 
-    function add_score($username, $score, $question): void {
+    public function add_score($username, $score, $question): void {
         $sql = "INSERT INTO SCORE (Username, Score, Question) 
                 VALUES (?, ?, ?)";
         
@@ -59,5 +59,6 @@ class model_BD {
 }
 }
 $db = new model_BD();
+
 
 ?>
