@@ -40,7 +40,7 @@ class model_BD {
         $createTable = $pdo->exec("CREATE TABLE IF NOT EXISTS $table ($columns)");
     }
 
-    public function give_user_score($username): array {
+    public function give_user_score(string $username): array {
         $sql = "SELECT * FROM SCORE 
         WHERE Username = ? 
         ORDER BY Created_at DESC";
@@ -50,7 +50,7 @@ class model_BD {
         return $rows;
 }
 
-    public function add_score($username, $score, $question): void {
+    public function add_score(string $username, int $score, string $question): void {
         $sql = "INSERT INTO SCORE (Username, Score, Question) 
                 VALUES (?, ?, ?)";
         
