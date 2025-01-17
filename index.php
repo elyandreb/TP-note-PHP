@@ -2,12 +2,12 @@
 
 require_once __DIR__ . '/Classes/autoload.php';
 
-use function BD\init_bd;
+use BD\model_BD;
 
 session_start();
 
 try {
-    $bd = init_bd();
+    $bd = new model_BD();
     $questions = Provider::getQuestions();
     $controller = new Controller($questions);
 
