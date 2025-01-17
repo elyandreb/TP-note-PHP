@@ -15,6 +15,11 @@ try {
     if ($action === 'showQuiz') {
         $controller->showQuiz();
     } 
+    elseif ($action === 'submitQuiz') {
+        $answers = $_POST;
+        $controller->submitQuiz($answers);
+    } 
+    
 } catch (Exception $e) {
     echo "<p>Erreur : " . $e->getMessage() . "</p>";
 }
