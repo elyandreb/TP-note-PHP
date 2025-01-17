@@ -1,5 +1,4 @@
 <?php
-namespace Question;
 
 use \Exception;
 

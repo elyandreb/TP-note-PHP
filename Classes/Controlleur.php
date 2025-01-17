@@ -1,6 +1,5 @@
 <?php
 
-namespace Question;
 
 class Controller
 {
