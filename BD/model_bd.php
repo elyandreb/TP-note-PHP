@@ -17,7 +17,7 @@ class model_BD {
         Id INTEGER( 11 ) PRIMARY KEY, 
         Username VARCHAR( 50 ) NOT NULL, 
         Score INT, Question VARCHAR ( 50 ),
-        Date_crea TIMESTAMP DEFAULT CURRENT_TIMESTAMP " ;
+        Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP " ;
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS $table ($columns)");
     }
 
@@ -33,10 +33,10 @@ class model_BD {
         $table= "SCORE";
         $pdo->exec("DROP TABLE IF EXISTS $table");
         $columns = "
-        Id INT( 11 ) AUTO_INCREMENT PRIMARY KEY, 
+        Id INT( 11 ) PRIMARY KEY, 
         Username VARCHAR( 50 ) NOT NULL, 
         Score INT, Question VARCHAR ( 50 ),
-        Date_crea TIMESTAMP DEFAULT CURRENT_TIMESTAMP " ;
+        Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP " ;
         $createTable = $pdo->exec("CREATE TABLE IF NOT EXISTS $table ($columns)");
     }
 
@@ -49,16 +49,31 @@ class model_BD {
         $rows = $stmt->fetchAll();
         return $rows;
 }
-
     public function add_score(string $username, int $score, string $question): void {
         $sql = "INSERT INTO SCORE (Username, Score, Question) 
                 VALUES (?, ?, ?)";
         
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$username, $score, $question]);
-}
-}
-$db = new model_BD();
+    }
 
+
+}
+// $db = new model_BD();
+// $db->add_score('lolo',5,"question1");
+// $db->add_score('lolo',10,"question2");
+// $db->add_score('lolo',4,"question3");
+
+
+// $score = $db->give_user_score('lolo');
+// print_r($score)
+// foreach ($score as $monscore) {
+//     foreach ($monscore as $monscore2) {
+//         echo $monscore2, "\n";
+//     };
+// }
+
+// print $score[0]["Username"];
+// print $score[0]["Score"];
 
 ?>
