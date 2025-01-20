@@ -18,7 +18,7 @@ class Controller
 
     public function showQuiz()
     {
-        include __DIR__ . '/../templates/quizz.php';
+
         echo "<form method='POST' action='index.php?action=submitQuiz'><ol>";
         foreach ($this->questions as $q) {
             echo "<li>";
@@ -37,7 +37,7 @@ class Controller
             $scoreTotal += $q["score"];
             $scoreCorrect += call_user_func($handler, $q, $answers[$q["name"]] );
         }
-        include __DIR__ . '/../templates/header.php';
+        include __DIR__ . '/templates/header.php';
         echo "<p>Votre score : $scoreCorrect / $scoreTotal</p>";
         echo "<a href='index.php'>Recommencer</a>";
     }

@@ -3,9 +3,9 @@
 use \Exception;
 
 class Provider{
-    public static function getQuestions()
+    public static function getQuestions($fichier)
     {
-        $source = 'data/questions.json';
+        $source = 'data/'. $fichier .".json";
         $content = file_get_contents($source);
         $questions = json_decode($content, true);
 
