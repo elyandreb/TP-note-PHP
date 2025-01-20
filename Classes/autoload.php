@@ -1,12 +1,16 @@
 <?php
-
 spl_autoload_register(static function(string $fqcn) {
-   // $fqcn contient Model\Thread\Message par exemple
-   // remplaçons les \ par des / et ajoutons .php à la fin.
-   // on obtient Model/Thread/Message.php
-   $path = str_replace('\\', '/', $fqcn).'.php';
 
-   // puis chargeons le fichier
-   require_once __DIR__ . '/' . $path;
+    $segments = explode('\\', $fqcn);
+    $className = end($segments);
+    
+    if ($segments[0] === 'Classes') {
+        // Si c'est dans le namespace Classes :
+        $path = __DIR__ . '/' . $className . '.php';
+    } elseif ($segments[0] === 'BD') {
+        // Si c'est dans le namespace BD :
+        $path = __DIR__ . '/BD/' . $className . '.php';
+    }
+    
+    require_once $path;
 });
-?>
