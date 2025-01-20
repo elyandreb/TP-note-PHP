@@ -39,7 +39,7 @@ class Controller
             $scoreTotal += $q["score"];
             $scoreUser = call_user_func($handler, $q, $answers[$q["name"]]);
             $scoreCorrect += $scoreUser;
-            $bd->add_score($username, $scoreUser, $q["text"]);
+            $bd->add_score($username, $scoreUser, $q["score"],$q["text"]);
         }
         include __DIR__ . '/templates/header.php';
         echo "<p>Votre score : $scoreCorrect / $scoreTotal</p>";
