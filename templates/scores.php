@@ -16,4 +16,5 @@ echo "<h3>Historique de mes scores :</h3>";
     else {
         echo "Aucun score disponible. <a href='index.php'>Faire le quiz</a>";
     }
+echo "<a href='../index.php'> Revenir à l'accueil </a>"
 ?> 
