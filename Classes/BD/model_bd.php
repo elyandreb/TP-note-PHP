@@ -8,7 +8,7 @@ class model_bd {
     private $pdo;
 
     public function __construct() {
-        $this->pdo = new PDO('sqlite:db.sqlite');
+        $this->pdo = new PDO('sqlite:' . __DIR__ . '/db.sqlite'); # ligne pour obtenir le chemin vers la BD
         // Permet de gérer le niveau des erreurs
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

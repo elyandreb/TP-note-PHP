@@ -42,7 +42,7 @@ class Controller
         }
         include __DIR__ . '/../templates/header.php';
         echo "<p>Votre score : $scoreCorrect / $scoreTotal</p>";
-        echo "<a href='templates/scores.php'>Voir mes scores</a>";
+        echo "<a href='templates/scores.php'>Voir mes scores</a><br>";
         echo "<a href='index.php'>Recommencer</a>";
     }
 }
