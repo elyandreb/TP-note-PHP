@@ -11,12 +11,13 @@ class model_bd {
         $this->pdo = new PDO('sqlite:' . __DIR__ . '/db.sqlite'); # ligne pour obtenir le chemin vers la BD
         // Permet de gérer le niveau des erreurs
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         $table= "SCORE";
         $columns = "
         Id INTEGER( 11 ) PRIMARY KEY, 
         Username VARCHAR( 50 ) NOT NULL, 
-        Score INT, Question VARCHAR ( 50 ),
+        Score INT,
+        ScoreMax INT,
+        Question VARCHAR ( 50 ),
         Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP " ;
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS $table ($columns)");
     }
@@ -26,18 +27,19 @@ class model_bd {
     }
 
     public function recreate_db():void {
-        include 'auth.php';
-        $pdo = new PDO('sqlite:db.sqlite');
+        $this->pdo = new PDO('sqlite:' . __DIR__ . '/db.sqlite');
         // Permet de gérer le niveau des erreurs
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $table= "SCORE";
-        $pdo->exec("DROP TABLE IF EXISTS $table");
+        $this->pdo->exec("DROP TABLE IF EXISTS $table");
         $columns = "
         Id INT( 11 ) PRIMARY KEY, 
         Username VARCHAR( 50 ) NOT NULL, 
-        Score INT, Question VARCHAR ( 50 ),
+        Score INT, 
+        ScoreMax INT,
+        Question VARCHAR ( 50 ),
         Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP " ;
-        $createTable = $pdo->exec("CREATE TABLE IF NOT EXISTS $table ($columns)");
+        $this->pdo->exec("CREATE TABLE IF NOT EXISTS $table ($columns)");
     }
 
     public function give_user_score(string $username): array {
@@ -49,15 +51,13 @@ class model_bd {
         $rows = $stmt->fetchAll();
         return $rows;
 }
-    public function add_score(string $username, int $score, string $question): void {
-        $sql = "INSERT INTO SCORE (Username, Score, Question) 
-                VALUES (?, ?, ?)";
+    public function add_score(string $username, int $score, int $ScoreMax, string $question): void {
+        $sql = "INSERT INTO SCORE (Username, Score, ScoreMax, Question) 
+                VALUES (?, ?, ?, ?)";
         
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$username, $score, $question]);
+        $stmt->execute([$username, $score, $ScoreMax, $question]);
     }
-
-
 }
 // $db = new model_BD();
 // $db->add_score('lolo',5,"question1");
