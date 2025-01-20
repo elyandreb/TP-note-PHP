@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/Classes/autoload.php';
 
+use Classes\Controller;
+use Classes\Provider;
 use BD\model_bd;
 
 session_start();
