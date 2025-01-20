@@ -2,8 +2,11 @@
 
 require_once __DIR__ . '/Classes/autoload.php';
 
-session_start();
 
+session_start();
+use Classes\Controller;
+use Classes\Provider;
+use BD\model_bd;
 
 if (isset($_GET['quiz'])) {
     $quiz = $_GET['quiz'];
@@ -12,6 +15,7 @@ if (isset($_GET['quiz'])) {
 
 try {
     $action = $_GET['action'] ?? 'home';
+    $bd = new model_bd();
 
     if ($action === 'home') {
         require_once __DIR__ . '/templates/home.php';

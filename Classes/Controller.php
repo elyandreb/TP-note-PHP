@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Classes;
 class Controller
 {
     private $questions;
@@ -31,14 +31,19 @@ class Controller
     {
         $scoreTotal = 0;
         $scoreCorrect = 0;
+        $username = $_SESSION['utilisateur'] ?? 'anonymous';
+        $bd = new \BD\model_bd();
 
         foreach ($this->questions as $q) {
             $handler = [QuestionHandlers::class, "answer_{$q["type"]}"];
             $scoreTotal += $q["score"];
-            $scoreCorrect += call_user_func($handler, $q, $answers[$q["name"]] );
+            $scoreUser = call_user_func($handler, $q, $answers[$q["name"]]);
+            $scoreCorrect += $scoreUser;
+            $bd->add_score($username, $scoreUser, $q["text"]);
         }
         include __DIR__ . '/templates/header.php';
         echo "<p>Votre score : $scoreCorrect / $scoreTotal</p>";
+        echo "<a href='templates/scores.php'>Voir mes scores</a><br>";
         echo "<a href='index.php'>Recommencer</a>";
     }
 }

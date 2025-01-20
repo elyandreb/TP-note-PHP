@@ -1,5 +1,6 @@
 <?php
 
+namespace Classes;
 class QuestionHandlers
 {
     public static function question_text($q)
