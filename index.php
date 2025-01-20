@@ -8,17 +8,16 @@ use Classes\Controller;
 use Classes\Provider;
 use BD\model_bd;
 
-if (isset($_GET['quiz'])) {
-    $quiz = $_GET['quiz'];
-    echo "Le quiz sélectionné est : " . htmlspecialchars($quiz);
-}
 
 try {
     $action = $_GET['action'] ?? 'home';
+    $quiz = $_GET['quiz'] ?? 'questions'; 
+    echo "Le quiz sélectionné est : " . htmlspecialchars($quiz); 
+
     $bd = new model_bd();
 
     if ($action === 'home') {
-        require_once __DIR__ . '/templates/home.php';
+        require_once __DIR__ . '/templates/quiz.php';
         $action = 'showQuiz';
     }
 
