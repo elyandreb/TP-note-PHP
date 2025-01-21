@@ -29,22 +29,7 @@ try {
 
     // Vérifier si l'utilisateur est connecté
     if (!isset($_SESSION['utilisateur'])) {
-        // Afficher le formulaire de login
-        echo <<<HTML
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Login</title>
-        </head>
-        <body>
-            <form method="POST" action="index.php?action=login">
-                <label for="username">Votre nom :</label>
-                <input type="text" id="username" name="username" required>
-                <input type="submit" value="Commencer">
-            </form>
-        </body>
-        </html>
-HTML;
+        require_once __DIR__ . '/templates/login.php';
         exit;
     }
 
