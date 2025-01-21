@@ -1,0 +1,54 @@
+[
+    {
+        "name": "animal_rapide",
+        "type": "text",
+        "text": "Quel est l'animal terrestre le plus rapide?",
+        "answer": "guépard",
+        "score": 2
+    },
+    {
+        "name": "mammifere_marin",
+        "type": "radio",
+        "text": "Quel est le plus grand mammifère marin?",
+        "choices": [
+            { "text": "Dauphin", "value": "dauphin" },
+            { "text": "Baleine bleue", "value": "baleine_bleue" },
+            { "text": "Orque", "value": "orque" }
+        ],
+        "answer": "baleine_bleue",
+        "score": 3
+    },
+    {
+        "name": "animaux_ovipares",
+        "type": "checkbox",
+        "text": "Quels animaux sont ovipares?",
+        "choices": [
+            { "text": "Poulet", "value": "poulet" },
+            { "text": "Serpent", "value": "serpent" },
+            { "text": "Chien", "value": "chien" },
+            { "text": "Canard", "value": "canard" },
+            { "text": "Chat", "value": "chat" }
+        ],
+        "answer": ["poulet", "serpent", "canard"],
+        "score": 4
+    },
+    {
+        "name": "animal_longue_vie",
+        "type": "text",
+        "text": "Quel animal est connu pour sa longévité exceptionnelle, vivant parfois plus de 150 ans?",
+        "answer": "tortue",
+        "score": 2
+    },
+    {
+        "name": "animal_symbolique",
+        "type": "radio",
+        "text": "Quel animal est le symbole national de l'Australie?",
+        "choices": [
+            { "text": "Koala", "value": "koala" },
+            { "text": "Kangourou", "value": "kangourou" },
+            { "text": "Émeu", "value": "emeu" }
+        ],
+        "answer": "kangourou",
+        "score": 3
+    }
+]
