@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Quiz</title>
+    <link rel="stylesheet" href="templates/css/login.css">
 </head>
 <body>
     <div class="login-container">
