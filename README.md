@@ -28,3 +28,6 @@ Le port peut évidemment être différent si besoin.
 - Utilisation de classes PHP pour programmer notre application orientée objet
 - Utilisation d’un contrôleur dans index.php piloté par GET['action'] 
 - Utilisation de PDO avec base de données sqlite pour stocker le score et le nom du joueur
+
+## Fonctionnalités supplémentaire
+- Possibilité de voir son historique de score (questions classées des plus récentes aux plus anciennes)
