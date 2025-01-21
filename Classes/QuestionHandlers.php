@@ -44,8 +44,8 @@ class QuestionHandlers
 
     public static function answer_checkbox($q, $v)
     {
-        $diff1 = array_diff($q["answer"], $v);
-        $diff2 = array_diff($v, $q["answer"]);
+        $diff1 = array_diff($q["answer"], is_array($v) ? $v : []);
+        $diff2 = array_diff(is_array($v) ? $v : [], $q["answer"]);
         return (count($diff1) === 0 && count($diff2) === 0) ? $q["score"] : 0;
     }
 }
