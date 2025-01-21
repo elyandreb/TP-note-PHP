@@ -18,8 +18,9 @@ class Controller
 
     public function showQuiz()
     {
-
-        echo "<form method='POST' action='index.php?action=submitQuiz'><ol>";
+        $quiz = $_GET['quiz'] ?? 'questions';
+        echo "<h1>Le quiz selectionné est ".$quiz." </h1>";
+        echo "<form class=quiz-container method='POST' action='index.php?action=submitQuiz'><ol>";
         foreach ($this->questions as $q) {
             echo "<li>";
             call_user_func($this->type[$q["type"]], $q);
