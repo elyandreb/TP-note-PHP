@@ -7,7 +7,7 @@ use \Exception;
 class Provider{
     public static function getQuestions($fichier)
     {
-        $source = 'data/'. $fichier .".json";
+        $source = __DIR__ . '/../data/'. $fichier .".json";
         $content = file_get_contents($source);
         $questions = json_decode($content, true);
 

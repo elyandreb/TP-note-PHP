@@ -5,10 +5,12 @@ class Controller
 {
     private $questions;
     private $type;
+    private $currentQuiz;
 
     public function __construct($questions)
     {
         $this->questions = $questions;
+        $this->currentQuiz = $_GET['quiz'] ?? 'questions';
         $this->type = [
             "text" => [QuestionHandlers::class, "question_text"],
             "radio" => [QuestionHandlers::class, "question_radio"],
@@ -18,8 +20,7 @@ class Controller
 
     public function showQuiz()
     {
-
-        echo "<form method='POST' action='index.php?action=submitQuiz'><ol>";
+        echo "<form method='POST' action='index.php?action=submitQuiz&quiz={$this->currentQuiz}'><ol>";
         foreach ($this->questions as $q) {
             echo "<li>";
             call_user_func($this->type[$q["type"]], $q);
@@ -35,13 +36,16 @@ class Controller
         $bd = new \BD\model_bd();
 
         foreach ($this->questions as $q) {
-            $handler = [QuestionHandlers::class, "answer_{$q["type"]}"];
-            $scoreTotal += $q["score"];
-            $scoreUser = call_user_func($handler, $q, $answers[$q["name"]]);
-            $scoreCorrect += $scoreUser;
-            $bd->add_score($username, $scoreUser, $q["score"],$q["text"]);
+            if (isset($answers[$q["name"]])) {  // Vérification que la réponse existe
+                $handler = [QuestionHandlers::class, "answer_{$q["type"]}"];
+                $scoreTotal += $q["score"];
+                $scoreUser = call_user_func($handler, $q, $answers[$q["name"]]);
+                $scoreCorrect += $scoreUser;
+                $bd->add_score($username, $scoreUser, $q["score"], $q["text"]);
+            }
         }
-        include __DIR__ . '/templates/header.php';
+
+        include __DIR__ . '/../templates/header.php';
         echo "<p>Votre score : $scoreCorrect / $scoreTotal</p>";
         echo "<a href='templates/scores.php'>Voir mes scores</a><br>";
         echo "<a href='index.php'>Recommencer</a>";
